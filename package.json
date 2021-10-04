@@ -75,7 +75,8 @@
   },
   "jupyterlab": {
     "extension": true,
-    "outputDir": "jupyterlite_xeus_lua/labextension"
+    "outputDir": "jupyterlite_xeus_lua/labextension",
+    "webpackConfig": "./webpack.config.js"
   },
   "jupyterlite": {
     "liteExtension": true
