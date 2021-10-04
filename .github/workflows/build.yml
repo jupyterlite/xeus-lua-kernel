@@ -50,6 +50,7 @@ jobs:
       run: |
         set -eux
         jlpm
+        jlpm run build
         jlpm run eslint:check
         python -m pip install .
 
