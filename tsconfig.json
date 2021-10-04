@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    // Generate d.ts files
+    "allowJs": true,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "composite": true,

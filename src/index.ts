@@ -36,9 +36,7 @@ const server_kernel: JupyterLiteServerPlugin<void> = {
         }
       },
       create: async (options: IKernel.IOptions): Promise<IKernel> => {
-        return new XeusServerKernel({
-          ...options
-        });
+        return new XeusServerKernel(options);
       }
     });
   }

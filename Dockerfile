@@ -51,7 +51,7 @@ RUN cd /opt/nlohmannjson/build && \
 ##################################################################
 
  RUN mkdir -p /opt/nlohmannjson/build &&  \
-    git clone -b wasm https://github.com/DerThorsten/xeus.git   /opt/xeus
+    git clone -b wasm_node https://github.com/DerThorsten/xeus.git   /opt/xeus
 
 
 #
