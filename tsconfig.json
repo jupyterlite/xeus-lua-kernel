@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    // Generate d.ts files
-    "declaration": true,
     "allowSyntheticDefaultImports": true,
     "composite": true,
+    "declaration": true,
     "esModuleInterop": true,
     "incremental": true,
     "jsx": "react",
@@ -17,6 +15,7 @@
     "resolveJsonModule": true,
     "outDir": "lib",
     "rootDir": "src",
+    "strict": true,
     "strictNullChecks": true,
     "target": "es2017",
     "types": []

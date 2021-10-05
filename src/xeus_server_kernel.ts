@@ -4,9 +4,6 @@ import { ISignal, Signal } from '@lumino/signaling';
 
 import { PromiseDelegate } from '@lumino/coreutils';
 
-import XeusWorker from 'worker-loader!./worker';
-//import worker from './worker?raw';
-
 export class XeusServerKernel implements IKernel {
   /**
    * Instantiate a new XeusServerKernel
@@ -22,7 +19,9 @@ export class XeusServerKernel implements IKernel {
     this._sendMessage = sendMessage;
 
     const package_path = 'xeus_lua_kernel.js';
-    this._worker = new XeusWorker();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    this._worker = new Worker(new URL('./worker.js', import.meta.url));
     this._worker.onmessage = e => {
       this._processWorkerMessage(e.data);
     };
