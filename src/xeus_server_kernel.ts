@@ -4,6 +4,10 @@ import { ISignal, Signal } from '@lumino/signaling';
 
 import { PromiseDelegate } from '@lumino/coreutils';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import worker from './worker?raw';
+
 export class XeusServerKernel implements IKernel {
   /**
    * Instantiate a new XeusServerKernel
@@ -19,9 +23,9 @@ export class XeusServerKernel implements IKernel {
     this._sendMessage = sendMessage;
 
     const package_path = 'xeus_lua_kernel.js';
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    this._worker = new Worker(new URL('./worker.js', import.meta.url));
+
+    const blob = new Blob([worker]);
+    this._worker = new Worker(window.URL.createObjectURL(blob));
     this._worker.onmessage = e => {
       this._processWorkerMessage(e.data);
     };

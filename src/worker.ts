@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import createXeusModule from './xeus_lua';
 
 // We alias self to ctx and give it our newly created type
