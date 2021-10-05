@@ -29,7 +29,7 @@ export class XeusServerKernel implements IKernel {
     this._worker.postMessage({
       msg: {
         header: { msg_type: '__import__' },
-        content: { package_path: package_path }
+        content: { package_path }
       }
     });
   }
