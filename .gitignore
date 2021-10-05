@@ -111,4 +111,8 @@ dmypy.json
 # OSX files
 .DS_Store
 
-/_output
+_output
+
+xeus_lua.js
+xeus_lua.wasm
+xeus_lua.worker.js

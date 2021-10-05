@@ -1,7 +1,6 @@
-
 module.exports = {
   experiments: {
-      topLevelAwait: true,
-      asyncWebAssembly: true,
+    topLevelAwait: true,
+    asyncWebAssembly: true
   }
 };
