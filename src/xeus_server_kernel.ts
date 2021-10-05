@@ -52,7 +52,9 @@ export class XeusServerKernel implements IKernel {
   /**
    * Get the last parent header
    */
-  get parentHeader(): KernelMessage.IHeader<KernelMessage.MessageType> | undefined {
+  get parentHeader():
+    | KernelMessage.IHeader<KernelMessage.MessageType>
+    | undefined {
     return this._parentHeader;
   }
 
@@ -70,13 +72,14 @@ export class XeusServerKernel implements IKernel {
    */
   private _processWorkerMessage(msg: any): void {
     if (msg.type === 'special_input_request') {
-      const message = KernelMessage.createMessage<KernelMessage.IInputRequestMsg>({
-        channel: 'stdin',
-        msgType: 'input_request',
-        session: this._parentHeader?.session ?? '',
-        parentHeader: this._parentHeader,
-        content: msg.content ?? { prompt: '', password: false }
-      });
+      const message =
+        KernelMessage.createMessage<KernelMessage.IInputRequestMsg>({
+          channel: 'stdin',
+          msgType: 'input_request',
+          session: this._parentHeader?.session ?? '',
+          parentHeader: this._parentHeader,
+          content: msg.content ?? { prompt: '', password: false }
+        });
       this._sendMessage(message);
     } else {
       msg.header.session = this._parentHeader?.session ?? '';
