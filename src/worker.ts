@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import createXeusModule from './xeus_lua';
+import createXeusModule from './xeus_lua.js';
 
 // We alias self to ctx and give it our newly created type
 const ctx: Worker = self as any;
@@ -42,7 +42,11 @@ function postMessageToMain(message: any, channel: string) {
 }
 
 async function loadCppModule(moduleFactory: any): Promise<any> {
-  const options: any = {};
+  const options: any = {
+    locateFile: (path: string, prefix: string) => {
+      console.log(path, prefix);
+    }
+  };
 
   return moduleFactory(options).then((Module: any) => {
     raw_xkernel = new Module.xkernel();

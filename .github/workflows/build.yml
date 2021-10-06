@@ -49,6 +49,8 @@ jobs:
         run: |
           set -eux
           jlpm
+          # build separately for now
+          jlpm run build:wasm
           jlpm run build
           jlpm run eslint:check
           python -m pip install .

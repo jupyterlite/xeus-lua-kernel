@@ -33,8 +33,8 @@
     "build:emscripten": "echo $(pwd) && docker run --rm -v $(pwd):/src    -u $(id -u):$(id -g)  mydockerimage    ./build.sh",
     "copy-files": "copyfiles -u 1 src/xeus_lua.wasm  src/xeus_lua.worker.js src/xeus_lua.js lib",
     "build:wasm": "jlpm run build:dockerimage && jlpm run build:emscripten",
-    "build": "jlpm run build:wasm && jlpm run build:lib && jlpm run build:labextension:dev",
-    "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
+    "build": "jlpm run build:lib && jlpm run copy-files && jlpm run build:labextension:dev",
+    "build:prod": "jlpm run clean && jlpm run build:wasm && jlpm run build:lib && jlpm run copy-files && jlpm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
     "build:lib": "tsc",
@@ -66,7 +66,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1",
     "rimraf": "^3.0.2",
-    "typescript": "~4.1.3",
+    "typescript": "~4.2.3",
     "copyfiles": "^2.4.1"
   },
   "sideEffects": [
@@ -80,7 +80,13 @@
   "jupyterlab": {
     "extension": true,
     "outputDir": "jupyterlite_xeus_lua/labextension",
-    "webpackConfig": "./webpack.config.js"
+    "webpackConfig": "./webpack.config.js",
+    "sharedPackages": {
+      "@jupyterlite/kernel": {
+        "bundled": false,
+        "singleton": true
+      }
+    }
   },
   "jupyterlite": {
     "liteExtension": true
