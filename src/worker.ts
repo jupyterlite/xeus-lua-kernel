@@ -42,7 +42,11 @@ function postMessageToMain(message: any, channel: string) {
 }
 
 async function loadCppModule(moduleFactory: any): Promise<any> {
-  const options: any = {};
+  const options: any = {
+    locateFile: (path: string, prefix: string) => {
+      console.log(path, prefix);
+    }
+  };
 
   return moduleFactory(options).then((Module: any) => {
     raw_xkernel = new Module.xkernel();
