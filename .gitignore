@@ -112,6 +112,7 @@ dmypy.json
 .DS_Store
 
 _output
+*.doit.db
 
 xeus_lua.js
 xeus_lua.wasm
