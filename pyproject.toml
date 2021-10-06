@@ -14,4 +14,4 @@ build_cmd = "build:prod"
 npm = ["jlpm"]
 
 [tool.check-manifest]
-ignore = ["jupyterlite_xeus_lua/labextension/**", "yarn.lock", ".*", "package-lock.json", "Dockerfile", "src/xeus_lua.worker.js", "src/xeus_lua.js", "src/xeus_lua.wasm"]
+ignore = ["jupyterlite_xeus_lua/labextension/**", "yarn.lock", ".*", "package-lock.json", "Dockerfile", "src/xeus_lua.worker.js", "src/xeus_lua.js", "src/xeus_lua.wasm", "*.sh"]

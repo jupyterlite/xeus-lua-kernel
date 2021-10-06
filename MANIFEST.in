@@ -5,6 +5,7 @@ include package.json
 include install.json
 include ts*.json
 include yarn.lock
+include webpack.config.js
 
 graft jupyterlite_xeus_lua/labextension
 
