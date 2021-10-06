@@ -1,11 +1,10 @@
 // Copyright (c) Thorsten Beier
 // Distributed under the terms of the Modified BSD License.
 
-
-
-
-
-import { JupyterLiteServer, JupyterLiteServerPlugin } from '@jupyterlite/server';
+import {
+  JupyterLiteServer,
+  JupyterLiteServerPlugin
+} from '@jupyterlite/server';
 
 import { IKernel, IKernelSpecs } from '@jupyterlite/kernel';
 

@@ -4,8 +4,9 @@ import { ISignal, Signal } from '@lumino/signaling';
 
 import { PromiseDelegate } from '@lumino/coreutils';
 
-import XeusWorker from 'worker-loader!./worker';
-//import worker from './worker?raw';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import worker from './worker?raw';
 
 export class XeusServerKernel implements IKernel {
   /**
@@ -22,14 +23,16 @@ export class XeusServerKernel implements IKernel {
     this._sendMessage = sendMessage;
 
     const package_path = 'xeus_lua_kernel.js';
-    this._worker = new XeusWorker();
+
+    const blob = new Blob([worker]);
+    this._worker = new Worker(window.URL.createObjectURL(blob));
     this._worker.onmessage = e => {
       this._processWorkerMessage(e.data);
     };
     this._worker.postMessage({
       msg: {
         header: { msg_type: '__import__' },
-        content: { package_path: package_path }
+        content: { package_path }
       }
     });
   }
@@ -52,7 +55,9 @@ export class XeusServerKernel implements IKernel {
   /**
    * Get the last parent header
    */
-  get parentHeader(): KernelMessage.IHeader<KernelMessage.MessageType> | undefined {
+  get parentHeader():
+    | KernelMessage.IHeader<KernelMessage.MessageType>
+    | undefined {
     return this._parentHeader;
   }
 
@@ -70,13 +75,14 @@ export class XeusServerKernel implements IKernel {
    */
   private _processWorkerMessage(msg: any): void {
     if (msg.type === 'special_input_request') {
-      const message = KernelMessage.createMessage<KernelMessage.IInputRequestMsg>({
-        channel: 'stdin',
-        msgType: 'input_request',
-        session: this._parentHeader?.session ?? '',
-        parentHeader: this._parentHeader,
-        content: msg.content ?? { prompt: '', password: false }
-      });
+      const message =
+        KernelMessage.createMessage<KernelMessage.IInputRequestMsg>({
+          channel: 'stdin',
+          msgType: 'input_request',
+          session: this._parentHeader?.session ?? '',
+          parentHeader: this._parentHeader,
+          content: msg.content ?? { prompt: '', password: false }
+        });
       this._sendMessage(message);
     } else {
       msg.header.session = this._parentHeader?.session ?? '';

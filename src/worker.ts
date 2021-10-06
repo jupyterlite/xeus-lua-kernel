@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import createXeusModule from './xeus_lua';
 
 // We alias self to ctx and give it our newly created type
@@ -46,28 +48,30 @@ async function loadCppModule(moduleFactory: any): Promise<any> {
     raw_xkernel = new Module.xkernel();
     raw_xserver = raw_xkernel.get_server();
 
-    raw_xserver!.register_js_callback((type: string, channel: number, data: any) => {
-      data = JSON.parse(data);
-      switch (type) {
-        case 'shell': {
-          postMessageToMain(data, 'shell');
-          break;
-        }
-        case 'control': {
-          throw new Error('send_control is not yet implemented');
-          break;
-        }
-        case 'stdin': {
-          postMessageToMain(data, 'stdin');
-          break;
-        }
-        case 'publish': {
-          // TODO ask what to do with channel
-          postMessageToMain(data, 'iopub');
-          break;
+    raw_xserver!.register_js_callback(
+      (type: string, channel: number, data: any) => {
+        data = JSON.parse(data);
+        switch (type) {
+          case 'shell': {
+            postMessageToMain(data, 'shell');
+            break;
+          }
+          case 'control': {
+            throw new Error('send_control is not yet implemented');
+            break;
+          }
+          case 'stdin': {
+            postMessageToMain(data, 'stdin');
+            break;
+          }
+          case 'publish': {
+            // TODO ask what to do with channel
+            postMessageToMain(data, 'iopub');
+            break;
+          }
         }
       }
-    });
+    );
     raw_xkernel!.start();
   });
 }
