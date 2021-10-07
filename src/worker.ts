@@ -42,8 +42,7 @@ function postMessageToMain(message: any, channel: string) {
 }
 
 async function loadCppModule(moduleFactory: any): Promise<any> {
-  const options: any = {
-  };
+  const options: any = {};
   return moduleFactory(options).then((Module: any) => {
     raw_xkernel = new Module.xkernel();
     raw_xserver = raw_xkernel.get_server();
