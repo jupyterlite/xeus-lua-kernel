@@ -107,7 +107,7 @@ RUN cd /opt/xwidgets/build && \
     -DXWIDGETS_BUILD_SHARED_LIBS=OFF \
     -DXWIDGETS_BUILD_STATIC_LIBS=ON  \
     -DCMAKE_INSTALL_PREFIX=/install \
-    -DCMAKE_CXX_FLAGS="-O3"
+    -DCMAKE_CXX_FLAGS="-Oz -flto"
 RUN cd /opt/xwidgets/build && \
     emmake make -j8 install
 
@@ -136,7 +136,7 @@ RUN mkdir -p /xeus-lua-build && cd /xeus-lua-build  && ls && \
         -DLUA_INCLUDE_DIR=/opt/wasm_lua/lua-5.3.4/src \
         -DLUA_LIBRARY=/opt/wasm_lua/lua-5.3.4/src/liblua.a \
         -Dxeus_DIR=/install/lib/cmake/xeus \
-        -DCMAKE_CXX_FLAGS="-O3"
+        -DCMAKE_CXX_FLAGS="-Oz -flto"
 
 RUN cd /xeus-lua-build && \
     emmake make -j8 
