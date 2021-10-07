@@ -51,7 +51,7 @@ RUN cd /opt/nlohmannjson/build && \
 ##################################################################
 
  RUN mkdir -p /opt/nlohmannjson/build &&  \
-    git clone -b wasm https://github.com/DerThorsten/xeus.git   /opt/xeus
+    git clone -b no_threads https://github.com/DerThorsten/xeus.git   /opt/xeus
 
 
 #
@@ -106,8 +106,8 @@ RUN cd /opt/xwidgets/build && \
     -Dxeus_DIR=/install/lib/cmake/xeus \
     -DXWIDGETS_BUILD_SHARED_LIBS=OFF \
     -DXWIDGETS_BUILD_STATIC_LIBS=ON  \
-    -DCMAKE_INSTALL_PREFIX=/install \
-    -DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1 -pthread  -mbulk-memory  -matomics"
+    -DCMAKE_INSTALL_PREFIX=/install 
+    # -DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1 -pthread  -mbulk-memory  -matomics"
 RUN cd /opt/xwidgets/build && \
     emmake make -j8 install
 
