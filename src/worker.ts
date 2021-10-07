@@ -85,7 +85,7 @@ ctx.onmessage = async (event: MessageEvent): Promise<void> => {
   const msg_type = msg.header.msg_type;
 
   if (msg_type !== 'input_reply') {
-    if ('parent' in data && 'header' in data.parent){
+    if ('parent' in data && 'header' in data.parent) {
       _parentHeader = data.parent['header'];
     }
   }
