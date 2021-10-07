@@ -43,9 +43,9 @@ function postMessageToMain(message: any, channel: string) {
 
 async function loadCppModule(moduleFactory: any): Promise<any> {
   const options: any = {
-    locateFile: (path: string, prefix: string) => {
-      console.log(path, prefix);
-    }
+    // locateFile: (path: string, prefix: string) => {
+    //   console.log(path, prefix);
+    // }
   };
 
   return moduleFactory(options).then((Module: any) => {
