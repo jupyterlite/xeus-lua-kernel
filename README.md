@@ -2,7 +2,10 @@
 
 [![Github Actions Status](https://github.com/DerThorsten/jupyter-lite-xeus-lua/workflows/Build/badge.svg)](https://github.com/DerThorsten/jupyter-lite-xeus-lua/actions/workflows/build.yml)
 
-A JupyterLite server extension.
+A Lua kernel for JupyterLite running in the browser.
+
+![jupyterlite-xeus-lua](https://user-images.githubusercontent.com/591645/136570953-9bae67ad-fca6-436a-99e8-4cb6b0536d8c.gif)
+
 
 ## Requirements
 
