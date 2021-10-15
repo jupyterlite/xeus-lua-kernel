@@ -4,17 +4,6 @@ FROM emscripten/emsdk:2.0.27
 ARG USER_ID
 ARG GROUP_ID
 
-# RUN addgroup --gid $GROUP_ID user
-# RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
-# USER user
-
-# # RUN apt-get update && \
-# #     apt-get install -qqy doxygen git && \
-# #     mkdir -p /opt/libvpx/build && \
-# #     git clone https://github.com/webmproject/libvpx /opt/libvpx/src
-
-
-
 RUN mkdir -p /install
 RUN mkdir -p /install/lib
 
@@ -25,6 +14,7 @@ RUN mkdir -p /install/lib
 ##################################################################
 RUN mkdir -p /opt/xtl/build && \
     git clone https://github.com/xtensor-stack/xtl.git  /opt/xtl/src
+RUN cd  /opt/xtl/src && git checkout tags/0.7.2
 
 RUN cd /opt/xtl/build && \
     emcmake cmake ../src/   -DCMAKE_INSTALL_PREFIX=/install
@@ -38,6 +28,7 @@ RUN cd /opt/xtl/build && \
 ##################################################################
 RUN mkdir -p /opt/nlohmannjson/build && \
     git clone https://github.com/nlohmann/json.git /opt/nlohmannjson/src
+RUN cd /opt/nlohmannjson/src && git checkout tags/v3.9.1
 
 RUN cd /opt/nlohmannjson/build && \
     emcmake cmake ../src/   -DCMAKE_INSTALL_PREFIX=/install -DJSON_BuildTests=OFF
@@ -49,13 +40,9 @@ RUN cd /opt/nlohmannjson/build && \
 ##################################################################
 # xeus itself
 ##################################################################
-
- RUN mkdir -p /opt/nlohmannjson/build &&  \
-    git clone -b no_threads https://github.com/DerThorsten/xeus.git   /opt/xeus
-
-
-#
-#ADD xeus  /opt/xeus
+RUN mkdir -p /opt/nlohmannjson/build &&  \
+    git clone  https://github.com/jupyter-xeus/xeus.git   /opt/xeus
+RUN cd /opt/xeus && git checkout e7e60eee44d00627007e8032a52d12f04b9a3523
 
 RUN cd /install/lib && echo "LS" && ls
 RUN cd /install/include && echo "LS" && ls
@@ -72,6 +59,7 @@ RUN cd /xeus-build && \
 # lua
 ##################################################################
 RUN git clone https://github.com/DerThorsten/wasm_lua   /opt/wasm_lua
+RUN cd /opt/wasm_lua && git checkout tags/0.1.0
 RUN cd /opt/wasm_lua && \
     emmake make
 
@@ -82,6 +70,7 @@ RUN cd /opt/wasm_lua && \
 ##################################################################
 RUN mkdir -p /opt/xproperty/build && \
     git clone https://github.com/jupyter-xeus/xproperty.git  /opt/xproperty/src
+RUN cd /opt/xproperty/src && git checkout tags/0.11.0
 
 RUN cd /opt/xproperty/build && \
     emcmake cmake ../src/   \
@@ -97,6 +86,7 @@ RUN cd /opt/xproperty/build && \
 ##################################################################
 RUN mkdir -p /opt/xwidgets/build && \
     git clone -b master https://github.com/jupyter-xeus/xwidgets.git  /opt/xwidgets/src
+RUN cd /opt/xwidgets/src && git checkout tags/0.26.1
 
 RUN cd /opt/xwidgets/build && \
     emcmake cmake ../src/  \
@@ -117,9 +107,9 @@ RUN cd /opt/xwidgets/build && \
 # xeus-lua
 ##################################################################
 
-RUN mkdir -p /opt/nlomannjson/build &&  \
-   git clone -b main https://github.com/DerThorsten/xeus-lua.git   /opt/xeus-lua
-
+RUN mkdir -p /opt/xeus-lua/
+RUN git clone -b main    https://github.com/DerThorsten/xeus-lua.git   /opt/xeus-lua
+RUN cd /opt/xeus-lua && git checkout tags/0.5.9
 # COPY xeus-lua /opt/xeus-lua
 
 
