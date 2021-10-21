@@ -8,14 +8,14 @@
     "jupyterlite",
     "jupyterlite-extension"
   ],
-  "homepage": "https://github.com/DerThorsten/jupyterlite_xeus_lua",
+  "homepage": "https://github.com/jupyterlite/xeus-lua-kernel",
   "bugs": {
-    "url": "https://github.com/DerThorsten/jupyterlite_xeus_lua/issues"
+    "url": "https://github.com/jupyterlite/xeus-lua-kernel/issues"
   },
   "license": "BSD-3-Clause",
   "author": {
-    "name": "Thorsten Beier",
-    "email": "derthorstenbeier@gmail.com"
+    "name": "Thorsten Beier, JupyterLite Contributors",
+    "email": ""
   },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf,wasm}",
@@ -26,7 +26,7 @@
   "style": "style/index.css",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DerThorsten/jupyterlite_xeus_lua.git"
+    "url": "https://github.com/jupyterlite/xeus-lua-kernel.git"
   },
   "scripts": {
     "build:dockerimage": "docker build -t mydockerimage  --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . ",

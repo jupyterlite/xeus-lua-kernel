@@ -1,6 +1,6 @@
-# jupyterlite_xeus_lua
+# jupyterlite-xeus-lua-kernel
 
-[![Github Actions Status](https://github.com/DerThorsten/jupyter-lite-xeus-lua/workflows/Build/badge.svg)](https://github.com/DerThorsten/jupyter-lite-xeus-lua/actions/workflows/build.yml)
+[![Github Actions Status](https://github.com/jupyterlite/xeus-lua-kernel/workflows/Build/badge.svg)](https://github.com/jupyterlite/xeus-lua-kernel/actions/workflows/build.yml)
 
 A Lua kernel for JupyterLite running in the browser.
 

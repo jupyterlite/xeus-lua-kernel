@@ -108,7 +108,7 @@ RUN cd /opt/xwidgets/build && \
 ##################################################################
 
 RUN mkdir -p /opt/xeus-lua/
-RUN git clone -b main    https://github.com/DerThorsten/xeus-lua.git   /opt/xeus-lua
+RUN git clone -b main    https://github.com/jupyter-xeus/xeus-lua.git   /opt/xeus-lua
 RUN cd /opt/xeus-lua && git checkout tags/0.5.10
 # COPY xeus-lua /opt/xeus-lua
 

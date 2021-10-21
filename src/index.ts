@@ -1,4 +1,5 @@
 // Copyright (c) Thorsten Beier
+// Copyright (c) JupyterLite Contributors
 // Distributed under the terms of the Modified BSD License.
 
 import {
