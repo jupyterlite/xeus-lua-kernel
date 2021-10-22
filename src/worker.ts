@@ -1,3 +1,7 @@
+// Copyright (c) Thorsten Beier
+// Copyright (c) JupyterLite Contributors
+// Distributed under the terms of the Modified BSD License.
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import createXeusModule from './xeus_kernel.js';
