@@ -10,7 +10,7 @@ import setuptools
 HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name = "jupyterlite_xeus_lua"
+name = "jupyterlite-xeus-lua"
 
 lab_path = (HERE / name.replace("-", "_") / "labextension")
 
