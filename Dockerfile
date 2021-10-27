@@ -102,14 +102,39 @@ RUN cd /opt/xwidgets/build && \
     emmake make -j8 install
 
 
+##################################################################
+# xcanvas
+##################################################################
+
+RUN mkdir -p /opt/xcanvas/
+RUN git clone -b main    https://github.com/MartinRenou/xcanvas.git   /opt/xcanvas
+RUN cd /opt/xcanvas && git checkout tags/0.5.10
+# COPY xeus-lua /opt/xeus-lua
+
+
+RUN mkdir -p /xcanvas-build && cd /xcanvas-build  && ls && \
+    emcmake cmake  /opt/xcanvas \
+        -DCMAKE_INSTALL_PREFIX=/install \
+        -Dnlohmann_json_DIR=/install/lib/cmake/nlohmann_json \
+        -Dxtl_DIR=/install/share/cmake/xtl \
+        -Dxproperty_DIR=/install/lib/cmake/xproperty \
+        -Dxwidgets_DIR=/install/lib/cmake/xwidgets \
+        -DXCANVAS_BUILD_SHARED_LIBS=OFF \
+        -DXCANVAS_BUILD_STATIC_LIBS=ON  \
+        -DXLUA_USE_SHARED_XWIDGETS=OFF\
+        -DLUA_INCLUDE_DIR=/opt/wasm_lua/lua-5.3.4/src \
+        -DLUA_LIBRARY=/opt/wasm_lua/lua-5.3.4/src/liblua.a \
+        -Dxeus_DIR=/install/lib/cmake/xeus \
+        -DCMAKE_CXX_FLAGS="-Oz -flto"
+
 
 ##################################################################
 # xeus-lua
 ##################################################################
 
 RUN mkdir -p /opt/xeus-lua/
-RUN git clone -b main    https://github.com/DerThorsten/xeus-lua.git   /opt/xeus-lua
-RUN cd /opt/xeus-lua && git checkout tags/0.5.10
+RUN git clone -b fix_micromamba_action    https://github.com/jupyter-xeus/xeus-lua.git   /opt/xeus-lua
+#RUN cd /opt/xeus-lua && git checkout tags/0.6.0
 # COPY xeus-lua /opt/xeus-lua
 
 
@@ -122,7 +147,9 @@ RUN mkdir -p /xeus-lua-build && cd /xeus-lua-build  && ls && \
         -Dxproperty_DIR=/install/lib/cmake/xproperty \
         -Dxwidgets_DIR=/install/lib/cmake/xwidgets \
         -DXLUA_WITH_XWIDGETS=ON\
+        -DXLUA_WITH_XCANVAS=ON\
         -DXLUA_USE_SHARED_XWIDGETS=OFF\
+        -DXLUA_USE_SHARED_XCANVAS=OFF\
         -DLUA_INCLUDE_DIR=/opt/wasm_lua/lua-5.3.4/src \
         -DLUA_LIBRARY=/opt/wasm_lua/lua-5.3.4/src/liblua.a \
         -Dxeus_DIR=/install/lib/cmake/xeus \
