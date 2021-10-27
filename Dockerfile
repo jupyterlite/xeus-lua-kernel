@@ -121,12 +121,10 @@ RUN mkdir -p /xcanvas-build && cd /xcanvas-build  && ls && \
         -Dxwidgets_DIR=/install/lib/cmake/xwidgets \
         -DXCANVAS_BUILD_SHARED_LIBS=OFF \
         -DXCANVAS_BUILD_STATIC_LIBS=ON  \
-        -DXLUA_USE_SHARED_XWIDGETS=OFF\
-        -DLUA_INCLUDE_DIR=/opt/wasm_lua/lua-5.3.4/src \
-        -DLUA_LIBRARY=/opt/wasm_lua/lua-5.3.4/src/liblua.a \
         -Dxeus_DIR=/install/lib/cmake/xeus \
         -DCMAKE_CXX_FLAGS="-Oz -flto"
-
+RUN cd /opt/xcanvas-build && \
+    emmake make -j8 install
 
 ##################################################################
 # xeus-lua
