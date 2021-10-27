@@ -147,6 +147,7 @@ RUN mkdir -p /xeus-lua-build && cd /xeus-lua-build  && ls && \
         -Dxtl_DIR=/install/share/cmake/xtl \
         -Dxproperty_DIR=/install/lib/cmake/xproperty \
         -Dxwidgets_DIR=/install/lib/cmake/xwidgets \
+        -Dxcanvas_DIR=/install/lib/cmake/xcanvas \
         -DXLUA_WITH_XWIDGETS=ON\
         -DXLUA_WITH_XCANVAS=ON\
         -DXLUA_USE_SHARED_XWIDGETS=OFF\
