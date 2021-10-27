@@ -123,7 +123,8 @@ RUN mkdir -p /xcanvas-build && cd /xcanvas-build  && ls && \
         -DXCANVAS_BUILD_STATIC_LIBS=ON  \
         -Dxeus_DIR=/install/lib/cmake/xeus \
         -DCMAKE_CXX_FLAGS="-Oz -flto"
-RUN cd /opt/xcanvas-build && \
+
+RUN cd /xcanvas-build && \
     emmake make -j8 install
 
 ##################################################################
