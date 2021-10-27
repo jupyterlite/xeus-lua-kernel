@@ -107,7 +107,7 @@ RUN cd /opt/xwidgets/build && \
 ##################################################################
 
 RUN mkdir -p /opt/xcanvas/
-RUN git clone -b master    https://github.com/MartinRenou/xcanvas.git   /opt/xcanvas
+RUN git clone -b get_attr_function    https://github.com/DerThorsten/xcanvas.git   /opt/xcanvas
 RUN cd /opt/xcanvas && git checkout tags/0.2.1
 # COPY xeus-lua /opt/xeus-lua
 
