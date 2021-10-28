@@ -53,6 +53,7 @@ async function loadCppModule(moduleFactory: any): Promise<any> {
 
     raw_xserver!.register_js_callback(
       (type: string, channel: number, data: any) => {
+        console.log('parse data prior to sending to lite', data);
         data = JSON.parse(data);
         switch (type) {
           case 'shell': {

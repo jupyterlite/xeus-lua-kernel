@@ -63,7 +63,7 @@ jobs:
           check-manifest -v
 
           pip install build
-          python -m build --sdist
+          python -m build
           cp dist/*.tar.gz myextension.tar.gz
           pip uninstall -y myextension jupyterlab
           rm -rf myextension
@@ -72,6 +72,11 @@ jobs:
         with:
           name: myextension-sdist
           path: myextension.tar.gz
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: wheel
+          path: dist/*.whl
 
   test_isolated:
     needs: build
