@@ -53,7 +53,6 @@ async function loadCppModule(moduleFactory: any): Promise<any> {
 
     raw_xserver!.register_js_callback(
       (type: string, channel: number, message: any) => {
-        console.log("js_callback \n",message)
         switch (type) {
           case 'shell': {
             postMessageToMain(message, 'shell');
@@ -97,7 +96,6 @@ ctx.onmessage = async (event: MessageEvent): Promise<void> => {
   if (msg_type === 'input_reply') {
     resolveInputReply(msg.content);
   } else {
-    console.log("JS: notify_listener\n",msg)
     raw_xserver!.notify_listener(msg);
   }
 };
