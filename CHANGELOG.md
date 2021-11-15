@@ -2,6 +2,12 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.2.0
+
+No merged PRs
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.1
 
 ([Full Changelog](https://github.com/jupyterlite/xeus-lua-kernel/compare/first-commit...47d189ec2368f191401605bdbb1217353cbd635f))
@@ -37,5 +43,3 @@
 ([GitHub contributors page for this release](https://github.com/jupyterlite/xeus-lua-kernel/graphs/contributors?from=2021-10-04&to=2021-10-22&type=c))
 
 [@DerThorsten](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3ADerThorsten+updated%3A2021-10-04..2021-10-22&type=Issues) | [@jtpio](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3Ajtpio+updated%3A2021-10-04..2021-10-22&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
