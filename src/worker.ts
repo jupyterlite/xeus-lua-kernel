@@ -52,11 +52,10 @@ async function loadCppModule(moduleFactory: any): Promise<any> {
     raw_xserver = raw_xkernel.get_server();
 
     raw_xserver!.register_js_callback(
-      (type: string, channel: number, data: any) => {
-        data = JSON.parse(data);
+      (type: string, channel: number, message: any) => {
         switch (type) {
           case 'shell': {
-            postMessageToMain(data, 'shell');
+            postMessageToMain(message, 'shell');
             break;
           }
           case 'control': {
@@ -64,12 +63,12 @@ async function loadCppModule(moduleFactory: any): Promise<any> {
             break;
           }
           case 'stdin': {
-            postMessageToMain(data, 'stdin');
+            postMessageToMain(message, 'stdin');
             break;
           }
           case 'publish': {
             // TODO ask what to do with channel
-            postMessageToMain(data, 'iopub');
+            postMessageToMain(message, 'iopub');
             break;
           }
         }
@@ -97,7 +96,6 @@ ctx.onmessage = async (event: MessageEvent): Promise<void> => {
   if (msg_type === 'input_reply') {
     resolveInputReply(msg.content);
   } else {
-    const str_msg = JSON.stringify(msg);
-    raw_xserver!.notify_listener(str_msg, msg.channel);
+    raw_xserver!.notify_listener(msg);
   }
 };
