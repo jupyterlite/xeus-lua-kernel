@@ -129,7 +129,7 @@ RUN cd /xcanvas-build && \
 ##################################################################
 
 RUN mkdir -p /opt/xeus-lua/
-RUN git clone --branch 0.6.2 --depth 1 https://github.com/jupyter-xeus/xeus-lua.git /opt/xeus-lua
+RUN git clone --branch 0.6.3 --depth 1 https://github.com/jupyter-xeus/xeus-lua.git /opt/xeus-lua
 
 # COPY xeus-lua /opt/xeus-lua
 
