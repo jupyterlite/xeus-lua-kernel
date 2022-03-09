@@ -66,8 +66,11 @@ RUN cd /opt/xproperty/build && \
 ##################################################################
 # ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
-RUN mkdir -p /opt/xeus &&  \
-    git clone --branch 2.3.0  --depth 1   https://github.com/jupyter-xeus/xeus.git   /opt/xeus
+RUN mkdir -p /opt/xeus
+RUN git clone --branch 2.4.0 --depth 1 https://github.com/jupyter-xeus/xeus.git /opt/xeus
+
+# COPY xeus /opt/xeus
+
 RUN mkdir -p /xeus-build && cd /xeus-build  && ls &&\
     emcmake cmake  /opt/xeus \
         -DCMAKE_INSTALL_PREFIX=/install \
@@ -76,9 +79,6 @@ RUN mkdir -p /xeus-build && cd /xeus-build  && ls &&\
         -DXEUS_EMSCRIPTEN_WASM_BUILD=ON
 RUN cd /xeus-build && \
     emmake make -j8 install
-
-
-
 
 
 ##################################################################
@@ -107,7 +107,6 @@ RUN cd /opt/xwidgets/build && \
 
 RUN mkdir -p /opt/xcanvas/
 RUN git clone  --branch  0.2.2 --depth 1  https://github.com/martinRenou/xcanvas.git   /opt/xcanvas
-# COPY xeus-lua /opt/xeus-lua
 
 
 RUN mkdir -p /xcanvas-build && cd /xcanvas-build  && ls && \
@@ -130,10 +129,9 @@ RUN cd /xcanvas-build && \
 ##################################################################
 
 RUN mkdir -p /opt/xeus-lua/
-RUN git clone  --branch  0.6.1 --depth 1 https://github.com/jupyter-xeus/xeus-lua.git   /opt/xeus-lua
+RUN git clone --branch 0.6.2 --depth 1 https://github.com/jupyter-xeus/xeus-lua.git /opt/xeus-lua
 
 # COPY xeus-lua /opt/xeus-lua
-
 
 RUN mkdir -p /xeus-lua-build && cd /xeus-lua-build  && ls && \
     emcmake cmake  /opt/xeus-lua \
