@@ -106,7 +106,7 @@ RUN cd /opt/xwidgets/build && \
 ##################################################################
 
 RUN mkdir -p /opt/xcanvas/
-RUN git clone  --branch  0.2.2 --depth 1  https://github.com/martinRenou/xcanvas.git   /opt/xcanvas
+RUN git clone  --branch  0.2.3 --depth 1  https://github.com/martinRenou/xcanvas.git   /opt/xcanvas
 
 
 RUN mkdir -p /xcanvas-build && cd /xcanvas-build  && ls && \
@@ -152,5 +152,5 @@ RUN mkdir -p /xeus-lua-build && cd /xeus-lua-build  && ls && \
         -DCMAKE_CXX_FLAGS="-Oz -flto"
 
 RUN cd /xeus-lua-build && \
-    emmake make -j8 
+    emmake make -j8
 
