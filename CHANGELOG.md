@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.1
+
+([Full Changelog](https://github.com/jupyterlite/xeus-lua-kernel/compare/v0.3.0...c3e9eb7a7eca22e95640db22534751905c79002b))
+
+### Merged PRs
+
+- Update xcanvas [#37](https://github.com/jupyterlite/xeus-lua-kernel/pull/37) ([@martinRenou](https://github.com/martinRenou))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupyterlite/xeus-lua-kernel/graphs/contributors?from=2022-03-18&to=2022-04-12&type=c))
+
+[@martinRenou](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3AmartinRenou+updated%3A2022-03-18..2022-04-12&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.0
 
 ([Full Changelog](https://github.com/jupyterlite/xeus-lua-kernel/compare/v0.2.0...57b43c598768a3c2e5edf4cd5cb35a56c677ed8c))
@@ -19,8 +35,6 @@
 ([GitHub contributors page for this release](https://github.com/jupyterlite/xeus-lua-kernel/graphs/contributors?from=2021-11-18&to=2022-03-17&type=c))
 
 [@DerThorsten](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3ADerThorsten+updated%3A2021-11-18..2022-03-17&type=Issues) | [@SylvainCorlay](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3ASylvainCorlay+updated%3A2021-11-18..2022-03-17&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.2.0
 
