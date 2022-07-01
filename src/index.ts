@@ -16,7 +16,7 @@ import logo32 from '../style/logos/lua-logo-32x32.png';
 import logo64 from '../style/logos/lua-logo-64x64.png';
 
 const server_kernel: JupyterLiteServerPlugin<void> = {
-  id: '@jupyterlite/xeus-kernel-extension:kernel',
+  id: '@jupyterlite/xeus-lua-kernel-extension:kernel',
   autoStart: true,
   requires: [IKernelSpecs],
   activate: (app: JupyterLiteServer, kernelspecs: IKernelSpecs) => {
