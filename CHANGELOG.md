@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.3
+
+([Full Changelog](https://github.com/jupyterlite/xeus-lua-kernel/compare/v0.3.2...98abd102da45c335db8a28b5aaa3605649384bc3))
+
+### Bugs fixed
+
+- Update the plugin id [#41](https://github.com/jupyterlite/xeus-lua-kernel/pull/41) ([@jtpio](https://github.com/jtpio))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupyterlite/xeus-lua-kernel/graphs/contributors?from=2022-05-19&to=2022-07-04&type=c))
+
+[@jtpio](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3Ajtpio+updated%3A2022-05-19..2022-07-04&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.2
 
 ([Full Changelog](https://github.com/jupyterlite/xeus-lua-kernel/compare/v0.3.1...5125c4d14e40d99884f268760bec156d2a279547))
@@ -15,8 +31,6 @@
 ([GitHub contributors page for this release](https://github.com/jupyterlite/xeus-lua-kernel/graphs/contributors?from=2022-04-12&to=2022-05-19&type=c))
 
 [@DerThorsten](https://github.com/search?q=repo%3Ajupyterlite%2Fxeus-lua-kernel+involves%3ADerThorsten+updated%3A2022-04-12..2022-05-19&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.3.1
 
