@@ -1,6 +1,6 @@
 {
   "name": "@jupyterlite/xeus-lua-kernel",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A Lua kernel for JupyterLite, powered by Xeus",
   "keywords": [
     "jupyter",
