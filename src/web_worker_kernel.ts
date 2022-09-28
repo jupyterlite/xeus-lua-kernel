@@ -8,15 +8,13 @@ import { ISignal, Signal } from '@lumino/signaling';
 
 import { PromiseDelegate } from '@lumino/coreutils';
 
-export class XeusServerKernel implements IKernel {
+export class WebWorkerKernel implements IKernel {
   /**
-   * Instantiate a new XeusServerKernel
+   * Instantiate a new WebWorkerKernel
    *
-   * @param options The instantiation options for a new XeusServerKernel
+   * @param options The instantiation options for a new WebWorkerKernel
    */
-
-  xeus_interpreter: any;
-  constructor(options: XeusServerKernel.IOptions) {
+  constructor(options: WebWorkerKernel.IOptions) {
     const { id, name, sendMessage } = options;
     this._id = id;
     this._name = name;
@@ -139,7 +137,7 @@ export class XeusServerKernel implements IKernel {
 /**
  * A namespace for XeusServerKernel statics.
  */
-export namespace XeusServerKernel {
+export namespace WebWorkerKernel {
   /**
    * The instantiation options for a Pyodide kernel
    */

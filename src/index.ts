@@ -9,7 +9,7 @@ import {
 
 import { IKernel, IKernelSpecs } from '@jupyterlite/kernel';
 
-import { XeusServerKernel } from './xeus_server_kernel';
+import { WebWorkerKernel } from './xeus_server_kernel';
 
 import logo32 from '../style/logos/lua-logo-32x32.png';
 
@@ -40,7 +40,7 @@ const server_kernel: JupyterLiteServerPlugin<void> = {
         }
       },
       create: async (options: IKernel.IOptions): Promise<IKernel> => {
-        return new XeusServerKernel({
+        return new WebWorkerKernel({
           ...options
         });
       }
