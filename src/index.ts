@@ -9,7 +9,7 @@ import {
 
 import { IKernel, IKernelSpecs } from '@jupyterlite/kernel';
 
-import { WebWorkerKernel } from './xeus_server_kernel';
+import { WebWorkerKernel } from './web_worker_kernel';
 
 import logo32 from '../style/logos/lua-logo-32x32.png';
 

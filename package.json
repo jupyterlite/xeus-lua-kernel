@@ -32,14 +32,14 @@
     "build:dockerimage": "docker build -t mydockerimage  --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . ",
     "build:dockerimage_no_cache": "docker build -t mydockerimage  --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) --no-cache . ",
     "build:emscripten": "echo $(pwd) && docker run --rm -v $(pwd):/src    -u $(id -u):$(id -g)  mydockerimage    ./build.sh",
-    "copy-files": "copyfiles -u 1 src/xeus_kernel.wasm  src/xeus_kernel.worker.js src/xeus_kernel.js lib",
+    "copy-files": "copyfiles -u 1 src/xlua_wasm.wasm src/xlua_wasm.js lib",
     "build:wasm": "jlpm run build:dockerimage && jlpm run build:emscripten",
     "build:wasm_no_cache": "jlpm run build:dockerimage_no_cache && jlpm run build:emscripten",
     "build": "jlpm run build:lib && jlpm run copy-files && jlpm run build:labextension:dev",
     "build:prod": "jlpm run clean && jlpm run build:wasm && jlpm run build:lib && jlpm run copy-files && jlpm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
-    "build:lib": "tsc",
+    "build:lib": "shx sed -i \"s/XEUS_KERNEL_FILE/'.\\/xlua_wasm.js'/\" src/worker.ts && tsc",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "clean:labextension": "rimraf jupyterlite_xeus_lua/labextension",
@@ -70,7 +70,8 @@
     "rimraf": "^3.0.2",
     "typescript": "~4.2.3",
     "copyfiles": "^2.4.1",
-    "copy-webpack-plugin": "^9.0.1"
+    "copy-webpack-plugin": "^9.0.1",
+    "shx": "^0.3.0"
   },
   "sideEffects": [
     "style/*.css",
