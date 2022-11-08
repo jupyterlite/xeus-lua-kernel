@@ -4,7 +4,7 @@
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import createXeusModule from './xeus_kernel.js';
+import createXeusModule from XEUS_KERNEL_FILE;
 
 // We alias self to ctx and give it our newly created type
 const ctx: Worker = self as any;

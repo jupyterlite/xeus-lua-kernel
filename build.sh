@@ -6,7 +6,7 @@ set -e
 mkdir -p /src/src
 
 
-cd /xeus-lua-build
+cd /opt/xeus-lua/build
 cp *.{js,wasm} /src/src
 
 echo "============================================="
