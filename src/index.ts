@@ -3,6 +3,7 @@
 // Distributed under the terms of the Modified BSD License.
 
 import {
+  IServiceWorkerRegistrationWrapper,
   JupyterLiteServer,
   JupyterLiteServerPlugin
 } from '@jupyterlite/server';
@@ -12,14 +13,17 @@ import { IKernel, IKernelSpecs } from '@jupyterlite/kernel';
 import { WebWorkerKernel } from './web_worker_kernel';
 
 import logo32 from '../style/logos/lua-logo-32x32.png';
-
 import logo64 from '../style/logos/lua-logo-64x64.png';
 
 const server_kernel: JupyterLiteServerPlugin<void> = {
   id: '@jupyterlite/xeus-lua-kernel-extension:kernel',
   autoStart: true,
-  requires: [IKernelSpecs],
-  activate: (app: JupyterLiteServer, kernelspecs: IKernelSpecs) => {
+  requires: [IKernelSpecs, IServiceWorkerRegistrationWrapper],
+  activate: (
+    app: JupyterLiteServer,
+    kernelspecs: IKernelSpecs,
+    serviceWorkerRegistrationWrapper: IServiceWorkerRegistrationWrapper
+  ) => {
     kernelspecs.register({
       spec: {
         name: 'Lua',
@@ -41,7 +45,8 @@ const server_kernel: JupyterLiteServerPlugin<void> = {
       },
       create: async (options: IKernel.IOptions): Promise<IKernel> => {
         return new WebWorkerKernel({
-          ...options
+          ...options,
+          mountDrive: serviceWorkerRegistrationWrapper.enabled
         });
       }
     });

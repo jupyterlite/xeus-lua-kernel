@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:2.0.32
+FROM emscripten/emsdk:3.1.2
 
 
 ARG USER_ID
@@ -65,7 +65,8 @@ RUN cd /opt/xproperty/build && \
 # xeus 
 ##################################################################
 RUN mkdir -p /opt/xeus/build
-RUN git clone --branch 3.0.1 --depth 1 https://github.com/jupyter-xeus/xeus.git /opt/xeus/src
+#RUN git clone --branch 3.0.1 --depth 1 https://github.com/jupyter-xeus/xeus.git /opt/xeus/src
+RUN git clone --branch wasm --depth 1 https://github.com/JohanMabille/xeus.git /opt/xeus/src
 
 # COPY xeus /opt/xeus
 
@@ -143,9 +144,8 @@ RUN cd /opt/xcanvas/build && \
 ##################################################################
 
 RUN mkdir -p /opt/xeus-lua/build
-RUN git clone --branch 0.7.0 --depth 1 https://github.com/jupyter-xeus/xeus-lua.git /opt/xeus-lua/src
-
-# COPY xeus-lua /opt/xeus-lua
+#RUN git clone --branch 0.7.0 --depth 1 https://github.com/jupyter-xeus/xeus-lua.git /opt/xeus-lua/src
+RUN git clone --branch wasm --depth 1 https://github.com/JohanMabille/xeus-lua.git /opt/xeus-lua/src
 
 RUN cd /opt/xeus-lua/build && \
     emcmake cmake ../src \

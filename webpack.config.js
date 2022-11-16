@@ -7,6 +7,10 @@ module.exports = {
         {
           from: 'src/xlua_wasm.wasm',
           to: '.'
+        },
+        {
+          from: 'src/xlua_wasm.js',
+          to: '.'
         }
       ]
     })
