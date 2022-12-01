@@ -29,17 +29,20 @@
     "url": "https://github.com/jupyterlite/xeus-lua-kernel.git"
   },
   "scripts": {
-    "build:dockerimage": "docker build -t mydockerimage  --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . ",
+    "build:dockerimage": "docker build -t mydockerimage --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . ",
     "build:dockerimage_no_cache": "docker build -t mydockerimage  --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) --no-cache . ",
-    "build:emscripten": "echo $(pwd) && docker run --rm -v $(pwd):/src    -u $(id -u):$(id -g)  mydockerimage    ./build.sh",
+    "build:emscripten": "echo $(pwd) && docker run --rm -v $(pwd):/src -u $(id -u):$(id -g) mydockerimage ./copy_output.sh",
     "copy-files": "copyfiles -u 1 src/xlua_wasm.wasm src/xlua_wasm.js lib",
     "build:wasm": "jlpm run build:dockerimage && jlpm run build:emscripten",
     "build:wasm_no_cache": "jlpm run build:dockerimage_no_cache && jlpm run build:emscripten",
-    "build": "jlpm run build:lib && jlpm run copy-files && jlpm run build:labextension:dev",
-    "build:prod": "jlpm run clean && jlpm run build:wasm && jlpm run build:lib && jlpm run copy-files && jlpm run build:labextension",
+    "build:worker": "webpack --config worker.webpack.config.js --mode=development",
+    "build:worker:prod": "webpack --config worker.webpack.config.js --mode=production",
+    "build": "jlpm run build:lib && jlpm run build:worker && jlpm run copy-files && jlpm run build:labextension:dev",
+    "build:prod": "jlpm run clean && jlpm run build:wasm && jlpm run build:lib && jlpm run build:worker:prod && jlpm run copy-files && jlpm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
-    "build:lib": "shx sed -i \"s/XEUS_KERNEL_FILE/'.\\/xlua_wasm.js'/\" src/worker.ts && tsc",
+    "build:lib": " jlpm run sed-worker && tsc",
+    "sed-worker": "shx sed -i \"s/XEUS_KERNEL_FILE/'.\\/xlua_wasm.js'/\" src/worker.ts && shx sed -i \"s/LANGUAGE_DATA_FILE/''/\" src/worker.ts ",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "clean:labextension": "rimraf jupyterlite_xeus_lua/labextension",
@@ -56,7 +59,9 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlite/server": "^0.1.0-alpha.14"
+    "@jupyterlite/contents": "^0.1.0-beta.12",
+    "@jupyterlite/server": "^0.1.0-beta.12",
+    "comlink": "^4.3.1"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.1.0",
@@ -71,6 +76,7 @@
     "typescript": "~4.2.3",
     "copyfiles": "^2.4.1",
     "copy-webpack-plugin": "^9.0.1",
+    "source-map-loader": "^4.0.0",
     "shx": "^0.3.0"
   },
   "sideEffects": [
