@@ -9,7 +9,7 @@ A Lua kernel for JupyterLite running in the browser.
 
 ## Requirements
 
-- JupyterLite >= 0.1.0a14
+- JupyterLite >= 0.1.0b16
 
 ## Install
 

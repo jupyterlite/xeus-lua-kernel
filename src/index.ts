@@ -3,26 +3,28 @@
 // Distributed under the terms of the Modified BSD License.
 
 import {
-  IServiceWorkerRegistrationWrapper,
+  IServiceWorkerManager,
   JupyterLiteServer,
   JupyterLiteServerPlugin
 } from '@jupyterlite/server';
-
+import { IBroadcastChannelWrapper } from '@jupyterlite/contents';
 import { IKernel, IKernelSpecs } from '@jupyterlite/kernel';
 
 import { WebWorkerKernel } from './web_worker_kernel';
 
-import logo32 from '../style/logos/lua-logo-32x32.png';
-import logo64 from '../style/logos/lua-logo-64x64.png';
+import logo32 from '!!file-loader?context=.!../style/logos/lua-logo-32x32.png';
+import logo64 from '!!file-loader?context=.!../style/logos/lua-logo-64x64.png';
 
 const server_kernel: JupyterLiteServerPlugin<void> = {
   id: '@jupyterlite/xeus-lua-kernel-extension:kernel',
   autoStart: true,
-  requires: [IKernelSpecs, IServiceWorkerRegistrationWrapper],
+  requires: [IKernelSpecs],
+  optional: [IServiceWorkerManager, IBroadcastChannelWrapper],
   activate: (
     app: JupyterLiteServer,
     kernelspecs: IKernelSpecs,
-    serviceWorkerRegistrationWrapper: IServiceWorkerRegistrationWrapper
+    serviceWorker?: IServiceWorkerManager,
+    broadcastChannel?: IBroadcastChannelWrapper
   ) => {
     kernelspecs.register({
       spec: {
@@ -44,9 +46,22 @@ const server_kernel: JupyterLiteServerPlugin<void> = {
         }
       },
       create: async (options: IKernel.IOptions): Promise<IKernel> => {
+        const mountDrive = !!(
+          serviceWorker?.enabled && broadcastChannel?.enabled
+        );
+
+        if (mountDrive) {
+          console.info(
+            'xeus-lua contents will be synced with Jupyter Contents'
+          );
+        } else {
+          console.warn(
+            'xeus-lua contents will NOT be synced with Jupyter Contents'
+          );
+        }
         return new WebWorkerKernel({
           ...options,
-          mountDrive: serviceWorkerRegistrationWrapper.enabled
+          mountDrive
         });
       }
     });
