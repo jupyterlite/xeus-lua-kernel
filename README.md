@@ -19,7 +19,7 @@ To install the extension, execute:
 pip install jupyterlite_xeus_lua
 ```
 
-Then build the JupyterLite site:
+Then build a JupyterLite site:
 
 ```bash
 jupyter lite build
