@@ -19,10 +19,18 @@ To install the extension, execute:
 pip install jupyterlite_xeus_lua
 ```
 
-Then build your JupyterLite site:
+Then build the JupyterLite site:
 
 ```bash
 jupyter lite build
+ls -al _output/index.html
+```
+
+Then serve the JupyterLite site locally:
+
+```bash
+jupyter lite serve
+python -m webbrowser http://127.0.0.1:8000/
 ```
 
 ## Uninstall
